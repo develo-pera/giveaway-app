@@ -1,0 +1,47 @@
+/* common used breakpoints */
+
+$big-screen: 1920px;
+$medium-screen: 1200px;
+$small-screen: 1024px;
+
+$tablet: 768px;
+
+$big-mobile: 480px;
+$medium-mobile: 375px;
+$small-mobile: 320px;
+
+@mixin breakpoint($media) {
+  @if $media == small-mobile {
+    @media only screen and (max-width: $small-mobile) {
+      @content;
+    }
+  } @else if $media == medium-mobile {
+    @media only screen and (max-width: $medium-mobile) {
+      @content;
+    }
+  } @else if $media == big-mobile {
+    @media only screen and (max-width: $big-mobile) {
+      @content;
+    }
+  }
+  @else if $media == tablet {
+    @media only screen and (max-width: $tablet) {
+      @content;
+    }
+  }
+  @else if $media == small-screen {
+    @media only screen and (max-width: $small-screen) {
+      @content;
+    }
+  }
+  @else if $media == medium-screen {
+    @media only screen and (max-width: $medium-screen) {
+      @content;
+    }
+  }
+  @else if $media == big-screen {
+    @media only screen and (max-width: $big-screen) {
+      @content;
+    }
+  }
+}
