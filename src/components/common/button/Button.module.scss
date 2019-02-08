@@ -1,0 +1,16 @@
+@import '../../../styles/variables/colors';
+
+.button {
+  color: $white;
+  background-color: $primaryDark;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 60px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.btnClassDisabled {
+  background-color: grey;
+  cursor: wait;
+}
