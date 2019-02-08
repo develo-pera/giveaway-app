@@ -1,0 +1,11 @@
+.wrapper {
+  text-align: center;
+}
+
+.text {
+  font-size: 14px;
+
+  &:nth-last-of-type(1) {
+    margin-bottom: 50px;
+  }
+}
