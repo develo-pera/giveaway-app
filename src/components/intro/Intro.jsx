@@ -11,7 +11,11 @@ const Intro = () => (
     <Button
       type="button"
       label="Start"
+      btnClass={styles.button}
     />
+    <p className={styles.description}>
+      * Currently we support only Instagram integration
+    </p>
   </div>
 )
 
