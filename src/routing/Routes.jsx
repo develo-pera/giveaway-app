@@ -4,7 +4,7 @@ import { withRouter, Switch, Redirect } from 'react-router-dom'
 
 import BaseRoute from './BaseRoute'
 
-import Test from '../components/test/Test'
+import Home from '../components/home/Home'
 
 import ScrollToTop from '../components/common/scroll-to-top/ScrollToTop'
 
@@ -16,7 +16,7 @@ const Routes = () => (
       <BaseRoute
         exact
         path={HOME}
-        component={Test}
+        component={Home}
       />
       <Redirect from="*" to={HOME} />
     </Switch>
