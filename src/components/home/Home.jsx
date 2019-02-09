@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Intro from '../intro/Intro'
+import SelectPost from '../select-post/SelectPost'
 
 import styles from './Home.module.scss'
 
@@ -10,6 +11,7 @@ class Home extends Component {
   state = {
     components: [
       <Intro />,
+      <SelectPost />,
     ],
   }
 
