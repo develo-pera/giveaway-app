@@ -1,10 +1,28 @@
+@import '../../../styles/variables/colors';
+
 .wrapper {
   overflow: auto;
   height: 645px;
+
+  &:hover {
+    img {
+      opacity: .4;
+    }
+  }
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
+}
+
+.post {
+  cursor: pointer;
+
+  &:hover {
+    img {
+      opacity: 1;
+    }
+  }
 }
