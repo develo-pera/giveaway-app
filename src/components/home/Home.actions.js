@@ -4,8 +4,8 @@ const dispatchIncrementCurrentPage = () => ({
   type: ACTION_TYPES.INCREMENT_CURRENT_PAGE_NUMBER,
 })
 
-const goToNextStep = () => {
+const goToNextStep = () => (
   dispatchIncrementCurrentPage()
-}
+)
 
 export default goToNextStep
