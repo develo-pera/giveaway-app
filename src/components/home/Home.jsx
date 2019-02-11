@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import Intro from '../intro/Intro'
 import SelectPost from '../select-post/SelectPost'
+import RulesSettings from '../rules-settings/RulesSettings'
 
 import styles from './Home.module.scss'
 
@@ -12,6 +13,7 @@ class Home extends Component {
     components: [
       <Intro />,
       <SelectPost />,
+      <RulesSettings />,
     ],
   }
 
