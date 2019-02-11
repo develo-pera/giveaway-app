@@ -1,0 +1,31 @@
+@import '../../../styles/variables/colors';
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 26px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.switchOff {
+  border-left: 23px solid $greyDark;
+  background-color: $grey;
+
+  .icon {
+    font-size: 11px;
+    color: $greyDark;
+  }
+}
+
+.switchOn {
+  border-right: 23px solid $switchGreen;
+  background-color: $primaryDark;
+
+  .icon {
+    font-size: 11px;
+    color: $switchGreen;
+  }
+}
