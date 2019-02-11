@@ -1,0 +1,20 @@
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  &:nth-last-child(2) {
+    margin-bottom: 50px;
+  }
+}
+
+.label {
+  font-size: 14px;
+  margin-right: 100px;
+  user-select: none;
+}
+
+.button {
+  float: right;
+}
