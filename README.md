@@ -12,7 +12,7 @@ You can choose between on or more winners based on rules you set:
 - winner should left a comment on your post
 - winner should tag *n* accounts on your post
 
-All this rules can be switched on and of, so you can make your own combination.
+All this rules can be switched on and off, so you can make your own combination.
 
 ## Demo
 [Giveaway App](https://blissful-dubinsky-d021a8.netlify.com/)
