@@ -1,14 +1,18 @@
 ## Giveaway app
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8f49ea71-f4f5-4bea-a0e8-505c73148a21/deploy-status)](https://app.netlify.com/sites/blissful-dubinsky-d021a8/deploys)
+
 Giveaway App helps you to randomly pick winners for your Instagram giveaway posts, checking if all the rules are met. 
 
-You can choose between on or more winners:
+You can choose between on or more winners based on rules you set:
 
-- who liked your post
-- who follow you
-- who follow other accounts you set as required
-- who left a comment on your post
-- who have tagged *n* accounts on your post
+- winner should like your post
+- winner should be following you
+- winner should be following other accounts you set as required
+- winner should left a comment on your post
+- winner should tag *n* accounts on your post
+
+All this rules can be switched on and of, so you can make your own combination.
 
 ## Demo
 [Giveaway App](https://blissful-dubinsky-d021a8.netlify.com/)
