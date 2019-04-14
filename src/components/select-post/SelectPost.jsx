@@ -44,7 +44,7 @@ SelectPost.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  posts: state.homeReducer.posts,
+  posts: state.postsReducer.posts,
 })
 
 const mapDispatchToProps = {

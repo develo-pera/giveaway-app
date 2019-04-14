@@ -2,7 +2,6 @@ import ACTION_TYPES from './Home.actionTypes'
 
 const INIT_STATE = {
   currentPage: 0,
-  posts: [],
 }
 
 const homeReducer = (state = INIT_STATE, action) => {
