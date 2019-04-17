@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import axios from 'axios'
 
 import saveFacebookAccessTokenToLocalStorage from './Intro.helpers'
 import goToNextStep from '../home/Home.actions'
@@ -15,6 +16,7 @@ class Intro extends Component {
     const { location, history, boundGoToNextStep } = this.props
     if (location.hash) {
       await saveFacebookAccessTokenToLocalStorage(location.hash)
+      axios.defaults.headers.common.Authorization = `Bearer ${JSON.parse(localStorage.getItem('fbToken')).access_token}`
       await history.push('/')
       await boundGoToNextStep()
     }
