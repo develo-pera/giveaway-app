@@ -2,8 +2,12 @@ const parseTokenValuesFromHash = (hashString) => {
   const parsedValues = {}
   hashString.split('&').forEach((parametar) => {
     const [key, value] = parametar.split('=');
-    parsedValues[key] = value
+    // Because first value in returned url is #acces_token
+    // and has a hash symbol as a first character
+    // we remove it with replace string method
+    parsedValues[key.replace('#', '')] = value
   })
+
   return parsedValues
 }
 
