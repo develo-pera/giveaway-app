@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import axios from 'axios'
 
+import { API_ROUTES } from '../../routing/ApiRoutes';
 import saveFacebookAccessTokenToLocalStorage from './Intro.helpers'
 import goToNextStep from '../home/Home.actions'
 
@@ -23,11 +24,10 @@ class Intro extends Component {
   }
 
   render() {
-    const facebookBaseUrl = 'https://www.facebook.com/v3.2/dialog/oauth?'
     const clientId = process.env.REACT_APP_FACEBOOK_CLIENT_ID
     const redirectUri = process.env.REACT_APP_FACEBOOK_REDIRECT_URI
     const crfProtection = process.env.REACT_APP_CRF_PROTECTION
-    const facebookLoginUrl = `${facebookBaseUrl}client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&state="${crfProtection}"`
+    const facebookLoginUrl = `${API_ROUTES.FACEBOOK_OAUTH_LINK}client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&state="${crfProtection}"`
 
     return (
       <div className={styles.wrapper}>
