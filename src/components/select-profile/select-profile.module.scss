@@ -1,0 +1,41 @@
+.title {
+  margin-bottom: 50px;
+  font-size: 14px;
+}
+
+.noPostsMessageWrapper {
+  text-align: center;
+}
+
+.text {
+  font-size: 14px;
+  margin: 0 0 5px;
+}
+
+.profilesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 7px;
+  grid-column-gap: 15px;
+}
+
+.card {
+  padding: 20px 15px;
+  border: 1px solid rgba(192, 192, 192, 0.56);
+  border-radius: 8px;
+  transition: box-shadow .3s ease,transform .3s ease;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+
+  &:hover {
+    transform: translate3d(0,-2px,0);
+    box-shadow: 0 8px 22px 0 rgba(189,208,223,.6);
+  }
+}
+
+.profileImage {
+  max-width: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}

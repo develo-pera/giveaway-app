@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Intro from '../intro/Intro'
+import SelectProfile from '../select-profile/select-profile'
 import SelectPost from '../select-post/SelectPost'
 import RulesSettings from '../rules-settings/RulesSettings'
 
@@ -12,6 +13,7 @@ class Home extends Component {
   state = {
     components: [
       <Intro />,
+      <SelectProfile />,
       <SelectPost />,
       <RulesSettings />,
     ],
