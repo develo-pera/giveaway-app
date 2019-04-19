@@ -7,50 +7,48 @@ const dispatchFetchUserProfilesInProgess = () => ({
   type: ACTION_TYPES.FETCH_USERS_INSTAGRAM_PROFILES_IN_PROGRESS,
 })
 
-const getConnectedInstagramAccountsIds = async () => {
-  try {
-    const response = axios({
-      method: 'GET',
-      url: API_ROUTES.GET_CONNECTED_INSTAGRAM_ACCOUNTS,
-    })
-    const { data: { data: facebookPages } } = await response
+const dispatchFetchUserProfilesError = () => ({
+  type: ACTION_TYPES.FETCH_USERS_INSTAGRAM_PROFILES_ERROR,
+})
 
-    return facebookPages
-      .filter(facebookPage => facebookPage.connected_instagram_account)
-      .map(facebookPageWithIG => facebookPageWithIG.connected_instagram_account.id)
-  } catch (e) {
-    return console.error(e)
-  }
+const getConnectedInstagramAccountsIds = async () => {
+  const response = axios({
+    method: 'GET',
+    url: API_ROUTES.GET_CONNECTED_INSTAGRAM_ACCOUNTS,
+  })
+  const { data: { data: facebookPages } } = await response
+  return facebookPages
+    .filter(facebookPage => facebookPage.connected_instagram_account)
+    .map(facebookPageWithIG => facebookPageWithIG.connected_instagram_account.id)
 }
 
 const getInstagramProfileData = async (id) => {
-  try {
-    const response = await axios({
-      method: 'GET',
-      url: `${FACEBOOK_API_BASE_URL}/${id}`,
-      params: {
-        fields: 'ig_id,username,name,profile_picture_url,followers_count,follows_count',
-      },
-    })
-    const { data } = await response
-    return data
-  } catch (e) {
-    return console.error(e);
-  }
+  const response = await axios({
+    method: 'GET',
+    url: `${FACEBOOK_API_BASE_URL}/${id}`,
+    params: {
+      fields: 'ig_id,username,name,profile_picture_url,followers_count,follows_count',
+    },
+  })
+  const { data } = await response
+  return data
 }
 
 const getUserInstagramProfiles = () => async (dispatch) => {
   dispatch(dispatchFetchUserProfilesInProgess());
+  try {
+    const connectedIGAccounts = await getConnectedInstagramAccountsIds()
+    const IGAccounts = await Promise.all(
+      connectedIGAccounts.map(ig => getInstagramProfileData(ig))
+    )
 
-  const connectedIGAccounts = await getConnectedInstagramAccountsIds()
-  const IGAccounts = await Promise.all(
-    connectedIGAccounts.map(ig => getInstagramProfileData(ig))
-  )
-
-  dispatch({
-    type: ACTION_TYPES.FETCH_USERS_INSTAGRAM_PROFILES_SUCCESS,
-    payload: IGAccounts,
-  })
+    dispatch({
+      type: ACTION_TYPES.FETCH_USERS_INSTAGRAM_PROFILES_SUCCESS,
+      payload: IGAccounts,
+    })
+  } catch (e) {
+    dispatch(dispatchFetchUserProfilesError())
+  }
 }
 
 export default getUserInstagramProfiles

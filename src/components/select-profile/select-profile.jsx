@@ -15,6 +15,17 @@ class SelectProfile extends React.Component {
     boundGetUserInstagramProfiles();
   }
 
+  renderErrorMessage = () => (
+    <div className={styles.noPostsMessageWrapper}>
+      <Emoji
+        symbol=" 🤷🏻‍♂️"
+      />
+      <p className={`${styles.text} ${styles.error}`}>
+        Unexpected error occurred and we can't fetch your instagram accounts, please try later
+      </p>
+    </div>
+  )
+
   renderNoProfilesMessage = () => (
     <div className={styles.noPostsMessageWrapper}>
       <Emoji
@@ -42,7 +53,7 @@ class SelectProfile extends React.Component {
         }
         {
           isError &&
-            'Jebi ga'
+          this.renderErrorMessage()
         }
         {
           !isLoading &&
