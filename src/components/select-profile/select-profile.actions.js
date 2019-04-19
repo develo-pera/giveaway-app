@@ -14,7 +14,7 @@ const getConnectedInstagramAccountsIds = async () => {
       url: API_ROUTES.GET_CONNECTED_INSTAGRAM_ACCOUNTS,
     })
     const { data: { data: facebookPages } } = await response
-    console.log(facebookPages)
+
     return facebookPages
       .filter(facebookPage => facebookPage.connected_instagram_account)
       .map(facebookPageWithIG => facebookPageWithIG.connected_instagram_account.id)

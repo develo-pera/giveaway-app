@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
-import getUserInstagramProfiles from './select-profile.actions';
+import { connect } from 'react-redux'
 
+import goToNextStep from '../home/Home.actions'
+import getUserInstagramProfiles from './select-profile.actions'
+import Emoji from '../common/emoji/Emoji'
+import DefaultPhoto from '../../assets/images/default-profile-photo.jpg'
 
 import styles from './select-profile.module.scss'
-import Emoji from '../common/emoji/Emoji';
 
 class SelectProfile extends React.Component {
   componentDidMount() {
@@ -29,10 +31,11 @@ class SelectProfile extends React.Component {
       isLoading,
       instagramProfiles,
       isError,
+      boundGoToNextStep,
     } = this.props
 
     return (
-      <div>
+      <div className={styles.container}>
         {
           isLoading &&
             'Loading'
@@ -57,17 +60,31 @@ class SelectProfile extends React.Component {
               <div className={styles.profilesGrid}>
                 {
                   instagramProfiles.map(profile => (
-                    <div className={styles.card}>
+                    <div
+                      onClick={boundGoToNextStep}
+                      className={styles.card}
+                    >
                       <img
                         className={styles.profileImage}
-                        src={profile.profile_picture_url}
+                        src={
+                          profile.profile_picture_url ||
+                          DefaultPhoto
+                        }
                         alt={profile.username}
                       />
                       <div>
                         <p className={styles.text}>{ `@${profile.username}` }</p>
                         <p className={styles.text}>{ profile.name }</p>
-                        <p className={styles.text}>{ profile.followers_count }</p>
-                        <p className={styles.text}>{ profile.follows_count }</p>
+                        <p className={styles.text}>
+                          Followers:
+                          {' '}
+                          { profile.followers_count }
+                        </p>
+                        <p className={styles.text}>
+                          Follows:
+                          {' '}
+                          { profile.follows_count }
+                        </p>
                       </div>
                     </div>
                   ))
@@ -85,6 +102,7 @@ SelectProfile.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   instagramProfiles: PropTypes.arrayOf().isRequired,
   isError: PropTypes.bool.isRequired,
+  boundGoToNextStep: PropTypes.func.isRequired,
   boundGetUserInstagramProfiles: PropTypes.func.isRequired,
 }
 
@@ -95,6 +113,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  boundGoToNextStep: goToNextStep,
   boundGetUserInstagramProfiles: getUserInstagramProfiles,
 }
 
