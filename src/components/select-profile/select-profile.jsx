@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 
 import goToNextStep from '../home/Home.actions'
 import getUserInstagramProfiles from './select-profile.actions'
+import getInstagramPhotosForProfileWithId from '../select-post/SelectPost.actions';
 import Loader from '../common/loader/Loader'
 import Emoji from '../common/emoji/Emoji'
 import DefaultPhoto from '../../assets/images/default-profile-photo.jpg'
 
 import styles from './select-profile.module.scss'
-
 
 class SelectProfile extends React.Component {
   componentDidMount() {
@@ -45,6 +45,7 @@ class SelectProfile extends React.Component {
       instagramProfiles,
       isError,
       boundGoToNextStep,
+      boundGetInstagramPhotosForProfileWithId,
     } = this.props
 
     return (
@@ -74,7 +75,10 @@ class SelectProfile extends React.Component {
                 {
                   instagramProfiles.map(profile => (
                     <div
-                      onClick={boundGoToNextStep}
+                      onClick={() => {
+                        boundGetInstagramPhotosForProfileWithId(profile.id)
+                        boundGoToNextStep()
+                      }}
                       className={styles.card}
                     >
                       <img
@@ -117,6 +121,7 @@ SelectProfile.propTypes = {
   isError: PropTypes.bool.isRequired,
   boundGoToNextStep: PropTypes.func.isRequired,
   boundGetUserInstagramProfiles: PropTypes.func.isRequired,
+  boundGetInstagramPhotosForProfileWithId: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -128,6 +133,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   boundGoToNextStep: goToNextStep,
   boundGetUserInstagramProfiles: getUserInstagramProfiles,
+  boundGetInstagramPhotosForProfileWithId: getInstagramPhotosForProfileWithId,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectProfile)

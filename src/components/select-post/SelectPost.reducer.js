@@ -15,8 +15,14 @@ const postsReducer = (state = INIT_STATE, action) => {
         isError: false,
         posts: [],
       }
+    case ACTION_TYPES.FETCH_USERS_INSTAGRAM_PHOTOS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        posts: action.payload,
+      }
     default:
-      return INIT_STATE
+      return state
   }
 }
 

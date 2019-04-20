@@ -12,13 +12,8 @@ const PostPicker = ({ posts, goToNextStep }) => (
             key={post.id}
             className={styles.post}
             onClick={goToNextStep}
-          >
-            <img
-              src={post.url}
-              alt={post.caption}
-              className={styles.image}
-            />
-          </div>
+            style={{ backgroundImage: `url(${post.thumbnail_url || post.media_url})` }}
+          />
         ))
       }
     </div>

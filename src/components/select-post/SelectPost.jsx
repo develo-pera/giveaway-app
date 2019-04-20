@@ -8,6 +8,7 @@ import Emoji from '../common/emoji/Emoji'
 import PostPicker from './post-picker/PostPicker'
 
 import styles from './SelectPost.module.scss'
+import Loader from '../common/loader/Loader';
 
 const renderPostPicker = (posts, goToNextStepHandler) => (
   <div>
@@ -28,15 +29,27 @@ const renderNoPostsMessage = () => (
   </div>
 )
 
-const SelectPost = ({ posts, boundGoToNextStep }) => (
+const SelectPost = ({ isLoading, posts, boundGoToNextStep }) => (
   <div className="container">
     {
-      posts.length > 0 ? renderPostPicker(posts, boundGoToNextStep) : renderNoPostsMessage()
+      isLoading &&
+      <Loader />
+    }
+    {
+      !isLoading &&
+      posts.length > 0 &&
+      renderPostPicker(posts, boundGoToNextStep)
+    }
+    {
+      !isLoading &&
+      posts.length === 0 &&
+      renderNoPostsMessage()
     }
   </div>
 )
 
 SelectPost.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   posts: PropTypes.arrayOf(
     PropTypes.shape()
   ).isRequired,
@@ -44,6 +57,7 @@ SelectPost.propTypes = {
 }
 
 const mapStateToProps = state => ({
+  isLoading: state.postsReducer.isLoading,
   posts: state.postsReducer.posts,
 })
 
