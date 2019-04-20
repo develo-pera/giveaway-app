@@ -27,7 +27,7 @@ const profilesReducer = (state = INIT_STATE, action) => {
         isError: true,
       }
     default:
-      return INIT_STATE
+      return state
   }
 }
 
