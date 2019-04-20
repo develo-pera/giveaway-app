@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 
 import goToNextStep from '../home/Home.actions'
 import getUserInstagramProfiles from './select-profile.actions'
+import Loader from '../common/loader/Loader'
 import Emoji from '../common/emoji/Emoji'
 import DefaultPhoto from '../../assets/images/default-profile-photo.jpg'
 
 import styles from './select-profile.module.scss'
+
 
 class SelectProfile extends React.Component {
   componentDidMount() {
@@ -49,7 +51,7 @@ class SelectProfile extends React.Component {
       <div className={styles.container}>
         {
           isLoading &&
-            'Loading'
+          <Loader />
         }
         {
           isError &&
