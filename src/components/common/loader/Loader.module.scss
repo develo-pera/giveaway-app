@@ -1,0 +1,47 @@
+@import '../../../styles/variables/colors';
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $primaryDark;
+  margin-right: 10px;
+  animation: scaleCircle .8s infinite;
+
+  &:nth-last-child(1) {
+    margin-right: 0;
+  }
+
+  &:nth-child(1) {
+    animation-delay: .1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: .2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: .3s;
+  }
+}
+
+@keyframes scaleCircle {
+  0% {
+    transform: scale(1);
+  }
+
+  33% {
+    transform: scale(1.2);
+  }
+
+  66% {
+    transform: scale(1);
+  }
+}
