@@ -3,7 +3,7 @@ import axios from 'axios'
 import { API_ROUTES, FACEBOOK_API_BASE_URL } from '../../routing/ApiRoutes';
 import ACTION_TYPES from './select-profile.actionTypes'
 
-const dispatchFetchUserProfilesInProgess = () => ({
+const dispatchFetchUserProfilesInProgress = () => ({
   type: ACTION_TYPES.FETCH_USERS_INSTAGRAM_PROFILES_IN_PROGRESS,
 })
 
@@ -35,7 +35,7 @@ const getInstagramProfileData = async (id) => {
 }
 
 const getUserInstagramProfiles = () => async (dispatch) => {
-  dispatch(dispatchFetchUserProfilesInProgess());
+  dispatch(dispatchFetchUserProfilesInProgress());
   try {
     const connectedIGAccounts = await getConnectedInstagramAccountsIds()
     const IGAccounts = await Promise.all(
