@@ -13,7 +13,7 @@ const dispatchFetchInstagramPhotosSuccess = photos => ({
   payload: photos,
 })
 
-const getInstagramPhotosForProfileWithId = id => async (dispatch) => {
+export const getInstagramPhotosForProfileWithId = id => async (dispatch) => {
   dispatch(dispatchFetchInstagramPhotosInProgress())
 
   const response = await axios({
@@ -29,4 +29,41 @@ const getInstagramPhotosForProfileWithId = id => async (dispatch) => {
   dispatch(dispatchFetchInstagramPhotosSuccess(photos));
 }
 
-export default getInstagramPhotosForProfileWithId
+const dispatchFetchInstagramPhotoCommentsInProgress = () => ({
+  type: ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_IN_PROGRESS,
+})
+
+const getCommentsForPhotoWithId = async (id, after, comments) => {
+  let commentsArray = comments || []
+  const params = {
+    fields: 'id,username,text',
+  }
+  if (after) {
+    params.after = after
+  }
+  const response = await axios({
+    method: 'GET',
+    url: `${FACEBOOK_API_BASE_URL}/${id}/comments`,
+    params,
+  })
+
+  const { data: { data: fetchedComments, paging } } = await response
+  commentsArray = commentsArray.concat(fetchedComments)
+
+  if (paging) {
+    return getCommentsForPhotoWithId(id, paging.cursors.after, commentsArray)
+  }
+
+  return commentsArray
+}
+
+export const getDataForPhotoWithId = id => async (dispatch) => {
+  dispatch(dispatchFetchInstagramPhotoCommentsInProgress())
+
+  const comments = await getCommentsForPhotoWithId(id)
+
+  dispatch({
+    type: ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_SUCCESS,
+    payload: comments,
+  })
+}

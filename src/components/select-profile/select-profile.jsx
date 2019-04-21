@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import goToNextStep from '../home/Home.actions'
 import getUserInstagramProfiles from './select-profile.actions'
-import getInstagramPhotosForProfileWithId from '../select-post/SelectPost.actions';
+import { getInstagramPhotosForProfileWithId } from '../select-post/SelectPost.actions'
 import Loader from '../common/loader/Loader'
 import Emoji from '../common/emoji/Emoji'
 import DefaultPhoto from '../../assets/images/default-profile-photo.jpg'
