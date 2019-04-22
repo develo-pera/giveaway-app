@@ -15,7 +15,7 @@ You can choose between on or more winners based on rules you set:
 All this rules can be switched on and off, so you can make your own combination.
 
 ## Demo
-[Giveaway App](https://blissful-dubinsky-d021a8.netlify.com/)
+[Giveaway App](https://giveaway-app.netlify.com)
 
 ## 🚀 Get Up and Running in 5 Minutes
 
