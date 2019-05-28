@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { getDataForPhotoWithId } from '../SelectPost.actions'
+import { selectPhotoWithId } from '../SelectPost.actions';
 
 import styles from './PostPicker.module.scss'
 
-const PostPicker = ({ posts, goToNextStep, boundGetDataForPhotoWithId }) => (
+const PostPicker = ({ posts, goToNextStep, boundSelectPhotoWithId }) => (
   <div className={styles.wrapper}>
     <div className={styles.grid}>
       {
@@ -15,7 +15,7 @@ const PostPicker = ({ posts, goToNextStep, boundGetDataForPhotoWithId }) => (
             key={post.id}
             className={styles.post}
             onClick={() => {
-              boundGetDataForPhotoWithId(post.id)
+              boundSelectPhotoWithId('18036147784041159')
               goToNextStep()
             }}
             style={{ backgroundImage: `url(${post.thumbnail_url || post.media_url})` }}
@@ -31,11 +31,11 @@ PostPicker.propTypes = {
     PropTypes.shape()
   ).isRequired,
   goToNextStep: PropTypes.func.isRequired,
-  boundGetDataForPhotoWithId: PropTypes.func.isRequired,
+  boundSelectPhotoWithId: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = {
-  boundGetDataForPhotoWithId: getDataForPhotoWithId,
+  boundSelectPhotoWithId: selectPhotoWithId,
 }
 
 export default connect(null, mapDispatchToProps)(PostPicker)

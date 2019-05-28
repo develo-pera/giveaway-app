@@ -22,33 +22,10 @@ const postsReducer = (state = INIT_STATE, action) => {
         isLoading: false,
         posts: action.payload,
       }
-    case ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_IN_PROGRESS:
+    case ACTION_TYPES.SELECT_PHOTO_WITH_ID:
       return {
         ...state,
-        selectedPost: {
-          ...state.selectedPost,
-          isLoading: true,
-          comments: [],
-          isError: false,
-        },
-      }
-    case ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_SUCCESS:
-      return {
-        ...state,
-        selectedPost: {
-          ...state.selectedPost,
-          isLoading: false,
-          comments: action.payload,
-        },
-      }
-    case ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_ERROR:
-      return {
-        ...state,
-        selectedPost: {
-          ...state.selectedPost,
-          isLoading: false,
-          isError: true,
-        },
+        selectedPost: action.payload,
       }
     default:
       return state

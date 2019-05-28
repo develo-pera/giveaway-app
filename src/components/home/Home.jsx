@@ -6,6 +6,7 @@ import Intro from '../intro/Intro'
 import SelectProfile from '../select-profile/select-profile'
 import SelectPost from '../select-post/SelectPost'
 import RulesSettings from '../rules-settings/RulesSettings'
+import Results from '../results/Results'
 
 import styles from './Home.module.scss'
 
@@ -16,6 +17,7 @@ class Home extends Component {
       <SelectProfile />,
       <SelectPost />,
       <RulesSettings />,
+      <Results />,
     ],
   }
 

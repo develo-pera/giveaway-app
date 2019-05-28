@@ -6,6 +6,7 @@ import Loader from '../common/loader/Loader'
 import Button from '../common/button/Button'
 import InputNumber from '../common/input-number/InputNumber'
 import Switch from '../common/switch/Switch'
+import goToNextStep from '../home/Home.actions';
 
 import styles from './RulesSettings.module.scss'
 
@@ -76,7 +77,7 @@ class RulesSettings extends Component {
       winnersShouldTagOthers,
       accountsTaggedNumber,
     } = this.state
-    const { isLoading } = this.props
+    const { isLoading, boundGoToNextStep } = this.props
 
     return (
       <Fragment>
@@ -148,6 +149,7 @@ class RulesSettings extends Component {
                 type="button"
                 label="Run"
                 btnClass={styles.button}
+                onClick={boundGoToNextStep}
               />
             </div>
           )
@@ -159,11 +161,15 @@ class RulesSettings extends Component {
 
 RulesSettings.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  boundGoToNextStep: PropTypes.func.isRequired,
 }
-
 
 const mapStateToProps = state => ({
   isLoading: state.postsReducer.selectedPost.isLoading,
 })
 
-export default connect(mapStateToProps)(RulesSettings)
+const mapDispatchToProps = {
+  boundGoToNextStep: goToNextStep,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RulesSettings)
