@@ -7,68 +7,40 @@ import Button from '../common/button/Button'
 import InputNumber from '../common/input-number/InputNumber'
 import Switch from '../common/switch/Switch'
 import goToNextStep from '../home/Home.actions';
+import { decrementHandler, incrementHandler, toggleSwitchHandler } from './RulesSettings.actions'
 
 import styles from './RulesSettings.module.scss'
 
 class RulesSettings extends Component {
-  state = {
-    winnersNumber: 0,
-    winnersShouldFollowMe: false,
-    shouldWinnersFollowOthers: false,
-    winnersNeedToLikePost: false,
-    winnersNeedToLeaveAComment: false,
-    winnersShouldTagOthers: false,
-    accountsTaggedNumber: 0,
-  }
-
-  decrementHandler = (value) => {
-    this.setState((prevValue) => {
-      if (prevValue[value] > 0) {
-        return {
-          [value]: prevValue[value] - 1,
-        }
-      }
-
-      return null
-    })
-  }
-
-  incrementHandler = (value) => {
-    this.setState((prevValue) => {
-      if (prevValue[value] < 10) {
-        return {
-          [value]: prevValue[value] + 1,
-        }
-      }
-
-      return null
-    })
-  }
-
   decrementWinnersNumberHandler = () => {
-    this.decrementHandler('winnersNumber')
+    const { boundDecrementHandler } = this.props
+    boundDecrementHandler('winnersNumber')
   }
 
   incrementWinnersNumberHandler = () => {
-    this.incrementHandler('winnersNumber')
+    const { boundIncrementHandler } = this.props
+    boundIncrementHandler('winnersNumber')
   }
 
   decrementAccountsTaggedNumberHandler = () => {
-    this.decrementHandler('accountsTaggedNumber')
+    const { boundDecrementHandler } = this.props
+    boundDecrementHandler('accountsTaggedNumber')
   }
 
   incrementAccountsTaggedNumberHandler = () => {
-    this.incrementHandler('accountsTaggedNumber')
+    const { boundIncrementHandler } = this.props
+    boundIncrementHandler('accountsTaggedNumber')
   }
 
   onSwitchClick = (switchClicked) => {
-    this.setState(prevValue => ({
-      [switchClicked]: !prevValue[switchClicked],
-    }))
+    const { boundToggleSwitchHandler } = this.props
+    boundToggleSwitchHandler(switchClicked)
   }
 
   render() {
     const {
+      isLoading,
+      boundGoToNextStep,
       winnersNumber,
       winnersShouldFollowMe,
       shouldWinnersFollowOthers,
@@ -76,8 +48,7 @@ class RulesSettings extends Component {
       winnersNeedToLeaveAComment,
       winnersShouldTagOthers,
       accountsTaggedNumber,
-    } = this.state
-    const { isLoading, boundGoToNextStep } = this.props
+    } = this.props
 
     return (
       <Fragment>
@@ -162,14 +133,34 @@ class RulesSettings extends Component {
 RulesSettings.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   boundGoToNextStep: PropTypes.func.isRequired,
+  boundIncrementHandler: PropTypes.func.isRequired,
+  boundDecrementHandler: PropTypes.func.isRequired,
+  boundToggleSwitchHandler: PropTypes.func.isRequired,
+  winnersNumber: PropTypes.number.isRequired,
+  winnersShouldFollowMe: PropTypes.bool.isRequired,
+  shouldWinnersFollowOthers: PropTypes.bool.isRequired,
+  winnersNeedToLikePost: PropTypes.bool.isRequired,
+  winnersNeedToLeaveAComment: PropTypes.bool.isRequired,
+  winnersShouldTagOthers: PropTypes.bool.isRequired,
+  accountsTaggedNumber: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
   isLoading: state.postsReducer.selectedPost.isLoading,
+  winnersNumber: state.rulesReducer.winnersNumber,
+  winnersShouldFollowMe: state.rulesReducer.winnersShouldFollowMe,
+  shouldWinnersFollowOthers: state.rulesReducer.shouldWinnersFollowOthers,
+  winnersNeedToLikePost: state.rulesReducer.winnersNeedToLikePost,
+  winnersNeedToLeaveAComment: state.rulesReducer.winnersNeedToLeaveAComment,
+  winnersShouldTagOthers: state.rulesReducer.winnersShouldTagOthers,
+  accountsTaggedNumber: state.rulesReducer.accountsTaggedNumber,
 })
 
 const mapDispatchToProps = {
   boundGoToNextStep: goToNextStep,
+  boundIncrementHandler: incrementHandler,
+  boundDecrementHandler: decrementHandler,
+  boundToggleSwitchHandler: toggleSwitchHandler,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RulesSettings)

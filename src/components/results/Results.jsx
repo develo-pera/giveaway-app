@@ -3,16 +3,17 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Loader from '../common/loader/Loader'
-import getDataForPhotoWithId from './Results.actions'
+import pickWinnersWhoSatisfyRules from './Results.actions'
 
 const Results = ({
   isLoading,
   isError,
   photoId,
-  boundGetDataForPhotoWithId,
+  boundPickWinnersWhoSatisfyRules,
+  rulesSettings,
 }) => {
   useEffect(() => {
-    boundGetDataForPhotoWithId(photoId)
+    boundPickWinnersWhoSatisfyRules(photoId, rulesSettings)
   }, [])
 
   return (
@@ -34,17 +35,27 @@ Results.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   photoId: PropTypes.string.isRequired,
-  boundGetDataForPhotoWithId: PropTypes.func.isRequired,
+  boundPickWinnersWhoSatisfyRules: PropTypes.func.isRequired,
+  rulesSettings: PropTypes.shape({
+    winnersNumber: PropTypes.number.isRequired,
+    winnersShouldFollowMe: PropTypes.bool.isRequired,
+    shouldWinnersFollowOthers: PropTypes.bool.isRequired,
+    winnersNeedToLikePost: PropTypes.bool.isRequired,
+    winnersNeedToLeaveAComment: PropTypes.bool.isRequired,
+    winnersShouldTagOthers: PropTypes.bool.isRequired,
+    accountsTaggedNumber: PropTypes.number.isRequired,
+  }).isRequired,
 }
 
 const mapStateToProps = state => ({
   isLoading: state.resultsReducer.isLoading,
   isError: state.resultsReducer.isError,
   photoId: state.postsReducer.selectedPost.id,
+  rulesSettings: state.rulesReducer,
 })
 
 const mapDispatchToProps = {
-  boundGetDataForPhotoWithId: getDataForPhotoWithId,
+  boundPickWinnersWhoSatisfyRules: pickWinnersWhoSatisfyRules,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results)

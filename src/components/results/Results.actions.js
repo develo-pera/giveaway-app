@@ -3,13 +3,11 @@ import axios from 'axios';
 import ACTION_TYPES from './Results.actionTypes';
 import { FACEBOOK_API_BASE_URL } from '../../routing/ApiRoutes';
 
-const dispatchFetchInstagramPhotoCommentsInProgress = () => ({
+const dispatchFetchInstagramPhotoInProgress = () => ({
   type: ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_IN_PROGRESS,
 })
 
 const getCommentsForPhotoWithId = async (id, after, comments) => {
-  console.log('ID =', id)
-  console.log(id)
   let commentsArray = comments || []
   const params = {
     fields: 'id,username,text,replies',
@@ -17,31 +15,47 @@ const getCommentsForPhotoWithId = async (id, after, comments) => {
   if (after) {
     params.after = after
   }
-  const response = await axios({
-    method: 'GET',
-    url: `${FACEBOOK_API_BASE_URL}/${id}/comments`,
-    params,
-  })
 
-  const { data: { data: fetchedComments, paging } } = await response
-  commentsArray = commentsArray.concat(fetchedComments)
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: `${FACEBOOK_API_BASE_URL}/${id}/comments`,
+      params,
+    })
 
-  if (paging) {
-    return getCommentsForPhotoWithId(id, paging.cursors.after, commentsArray)
+    const { data: { data: fetchedComments, paging } } = await response
+    commentsArray = commentsArray.concat(fetchedComments)
+
+    if (paging) {
+      return getCommentsForPhotoWithId(id, paging.cursors.after, commentsArray)
+    }
+  } catch (e) {
+    console.log(e)
   }
-
   return commentsArray
 }
 
-const getDataForPhotoWithId = id => async (dispatch) => {
-  dispatch(dispatchFetchInstagramPhotoCommentsInProgress())
-  console.log(id);
-  const comments = await getCommentsForPhotoWithId(id)
+const getDataForPhotoWithId = async (id, rules) => {
+  const data = {}
+
+  if (rules.winnersNeedToLeaveAComment) {
+    data.comments = await getCommentsForPhotoWithId(id)
+  }
+
+  return data
+}
+
+const pickWinnersWhoSatisfyRules = (id, rules) => async (dispatch) => {
+  dispatch(dispatchFetchInstagramPhotoInProgress())
+
+  const data = await getDataForPhotoWithId(id, rules);
 
   dispatch({
     type: ACTION_TYPES.FETCH_INSTAGRAM_PHOTO_DATA_SUCCESS,
-    payload: comments,
+    payload: data,
   })
+
+  console.log(data)
 }
 
-export default getDataForPhotoWithId
+export default pickWinnersWhoSatisfyRules
