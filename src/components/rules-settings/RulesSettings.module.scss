@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  transition: all .05s ease-in;
 
   &:nth-last-child(2) {
     margin-bottom: 50px;
@@ -18,4 +19,8 @@
 .button {
   float: right;
   user-select: none;
+}
+
+.hide {
+  opacity: .3;
 }

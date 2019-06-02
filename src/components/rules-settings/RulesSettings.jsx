@@ -108,12 +108,13 @@ class RulesSettings extends Component {
                   onClick={this.onSwitchClick}
                 />
               </div>
-              <div className={styles.control}>
+              <div className={`${styles.control} ${!winnersShouldTagOthers && styles.hide}`}>
                 <p className={styles.label}>How many accounts should be tagged?</p>
                 <InputNumber
                   value={accountsTaggedNumber}
                   onDecrement={this.decrementAccountsTaggedNumberHandler}
                   onIncrement={this.incrementAccountsTaggedNumberHandler}
+                  disabled={!winnersShouldTagOthers}
                 />
               </div>
               <Button
