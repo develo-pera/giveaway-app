@@ -1,4 +1,7 @@
-@import '../../../styles/variables/colors';
+$white: #fff;
+$grey: #ddd;
+$primaryDark: #0a192f;
+$greyDark: #7f8c9a;
 
 .input {
   display: flex;
@@ -21,6 +24,19 @@
   &:active {
     opacity: .8;
   }
+}
+
+.decrementButtonDisabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  height: 26px;
+  font-size: 10px;
+  border-radius: 5px 0 0 5px;
+  width: 25px;
+  color: $white;
+  background-color: $greyDark;
 }
 
 .numberInput {
@@ -53,4 +69,17 @@
   &:active {
     opacity: .8;
   }
+}
+
+.incrementButtonDisabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  height: 26px;
+  font-size: 10px;
+  border-radius: 0 5px 5px 0;
+  width: 25px;
+  color: $white;
+  background-color: $greyDark;
 }

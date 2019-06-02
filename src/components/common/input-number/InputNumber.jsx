@@ -6,11 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import styles from './InputNumber.module.scss'
 
-const InputNumber = ({ value, onIncrement, onDecrement }) => (
+const InputNumber = ({
+  value,
+  onIncrement,
+  onDecrement,
+  disabled,
+}) => (
   <div className={styles.input}>
     <div
-      className={styles.decrementButton}
-      onClick={onDecrement}
+      className={!disabled ? styles.decrementButton : styles.decrementButtonDisabled}
+      onClick={!disabled && onDecrement}
     >
       <FontAwesomeIcon icon={faMinus} />
     </div>
@@ -18,8 +23,8 @@ const InputNumber = ({ value, onIncrement, onDecrement }) => (
       {value}
     </div>
     <div
-      className={styles.incrementButton}
-      onClick={onIncrement}
+      className={!disabled ? styles.incrementButton : styles.incrementButtonDisabled}
+      onClick={!disabled && onIncrement}
     >
       <FontAwesomeIcon icon={faPlus} />
     </div>
@@ -30,6 +35,11 @@ InputNumber.propTypes = {
   value: PropTypes.number.isRequired,
   onIncrement: PropTypes.func.isRequired,
   onDecrement: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+}
+
+InputNumber.defaultProps = {
+  disabled: false,
 }
 
 export default InputNumber
