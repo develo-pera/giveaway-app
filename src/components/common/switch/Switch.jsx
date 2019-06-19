@@ -17,12 +17,12 @@ class Switch extends Component {
   }
 
   render() {
-    const { value } = this.props
+    const { value, disabled } = this.props
 
     return (
       <div
         className={`${styles.switch} ${value ? styles.switchOn : styles.switchOff}`}
-        onClick={this.onSwitchClick}
+        onClick={!disabled && this.onSwitchClick}
       >
         {
           value ?
@@ -48,10 +48,12 @@ Switch.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 }
 
 Switch.defaultProps = {
   value: false,
+  disabled: false,
 }
 
 export default Switch
