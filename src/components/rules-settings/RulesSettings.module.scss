@@ -5,6 +5,12 @@
   margin-bottom: 10px;
   transition: all .05s ease-in;
 
+  &Column {
+    flex-direction: column;
+    align-items: initial;
+    margin-bottom: 20px;
+  }
+
   &:nth-last-child(2) {
     margin-bottom: 50px;
   }

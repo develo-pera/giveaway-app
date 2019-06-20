@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import AsyncSelect from 'react-select/async'
 
 import Loader from '../common/loader/Loader'
 import Button from '../common/button/Button'
@@ -82,6 +83,13 @@ class RulesSettings extends Component {
                   name="shouldWinnersFollowOthers"
                   value={shouldWinnersFollowOthers}
                   onClick={this.onSwitchClick}
+                />
+              </div>
+              <div className={`${styles.controlColumn} ${!shouldWinnersFollowOthers && styles.hide}`}>
+                <p className={styles.label}>Type in usernames of those accounts:</p>
+                <AsyncSelect
+                  isMulti
+                  isDisabled={!shouldWinnersFollowOthers}
                 />
               </div>
               <div className={styles.control}>
