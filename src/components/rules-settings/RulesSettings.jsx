@@ -100,12 +100,13 @@ class RulesSettings extends Component {
                   onClick={this.onSwitchClick}
                 />
               </div>
-              <div className={styles.control}>
+              <div className={`${styles.control} ${!winnersNeedToLeaveAComment && !winnersShouldTagOthers && styles.hide}`}>
                 <p className={styles.label}>Should winner tag someone in that comment?</p>
                 <Switch
                   name="winnersShouldTagOthers"
                   value={winnersShouldTagOthers}
                   onClick={this.onSwitchClick}
+                  disabled={!winnersNeedToLeaveAComment && !winnersShouldTagOthers}
                 />
               </div>
               <div className={`${styles.control} ${!winnersShouldTagOthers && styles.hide}`}>
