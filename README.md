@@ -1,3 +1,5 @@
+Probably won't continue developing this app because of Facebook's (Instagram) API, it's so limiting...
+
 ## Giveaway app
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8f49ea71-f4f5-4bea-a0e8-505c73148a21/deploy-status)](https://app.netlify.com/sites/blissful-dubinsky-d021a8/deploys)
