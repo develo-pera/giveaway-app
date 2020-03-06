@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import Intro from '../intro/Intro'
-import SelectProfile from '../select-profile/select-profile'
-import SelectPost from '../select-post/SelectPost'
-import RulesSettings from '../rules-settings/RulesSettings'
-import Results from '../results/Results'
+import Intro from '../intro/Intro';
+import SelectProfile from '../select-profile/select-profile';
+import SelectPost from '../select-post/SelectPost';
+import RulesSettings from '../rules-settings/RulesSettings';
+import Results from '../results/Results';
 
-import styles from './Picker.module.scss'
+import styles from './Picker.module.scss';
 
 class Picker extends Component {
   state = {
@@ -19,15 +19,15 @@ class Picker extends Component {
       <RulesSettings />,
       <Results />,
     ],
-  }
+  };
 
   renderComponentByStep = (step) => {
-    const { components } = this.state
-    return components[step]
-  }
+    const { components } = this.state;
+    return components[step];
+  };
 
   render() {
-    const { currentPage } = this.props
+    const { currentPage } = this.props;
 
     return (
       <div className={styles.wrapper}>
@@ -39,10 +39,10 @@ class Picker extends Component {
 
 Picker.propTypes = {
   currentPage: PropTypes.number.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   currentPage: state.homeReducer.currentPage,
-})
+});
 
-export default connect(mapStateToProps)(Picker)
+export default connect(mapStateToProps)(Picker);
