@@ -4,7 +4,7 @@ import { withRouter, Switch, Redirect } from 'react-router-dom';
 
 import BaseRoute from './BaseRoute';
 
-import Home from '../containers/home/home';
+import Home from '../containers/home/Home';
 
 import ScrollToTop from '../components/common/scroll-to-top/ScrollToTop';
 
