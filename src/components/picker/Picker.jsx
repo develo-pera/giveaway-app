@@ -8,9 +8,9 @@ import SelectPost from '../select-post/SelectPost'
 import RulesSettings from '../rules-settings/RulesSettings'
 import Results from '../results/Results'
 
-import styles from './Home.module.scss'
+import styles from './Picker.module.scss'
 
-class Home extends Component {
+class Picker extends Component {
   state = {
     components: [
       <Intro />,
@@ -37,7 +37,7 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
+Picker.propTypes = {
   currentPage: PropTypes.number.isRequired,
 }
 
@@ -45,4 +45,4 @@ const mapStateToProps = state => ({
   currentPage: state.homeReducer.currentPage,
 })
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Picker)

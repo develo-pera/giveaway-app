@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import goToNextStep from '../home/Home.actions'
+import goToNextStep from '../picker/Picker.actions'
 
 import Emoji from '../common/emoji/Emoji'
 import PostPicker from './post-picker/PostPicker'

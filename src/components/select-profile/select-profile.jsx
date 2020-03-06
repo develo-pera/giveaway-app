@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import goToNextStep from '../home/Home.actions'
+import goToNextStep from '../picker/Picker.actions'
 import getUserInstagramProfiles from './select-profile.actions'
 import { getInstagramPhotosForProfileWithId } from '../select-post/SelectPost.actions'
 import Loader from '../common/loader/Loader'

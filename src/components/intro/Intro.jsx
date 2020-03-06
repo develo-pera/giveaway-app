@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import { API_ROUTES } from '../../routing/ApiRoutes';
 import saveFacebookAccessTokenToLocalStorage from './Intro.helpers'
-import goToNextStep from '../home/Home.actions'
+import goToNextStep from '../picker/Picker.actions'
 
 import Button from '../common/button/Button'
 

@@ -7,7 +7,7 @@ import Loader from '../common/loader/Loader'
 import Button from '../common/button/Button'
 import InputNumber from '../common/input-number/InputNumber'
 import Switch from '../common/switch/Switch'
-import goToNextStep from '../home/Home.actions';
+import goToNextStep from '../picker/Picker.actions';
 import { decrementHandler, incrementHandler, toggleSwitchHandler } from './RulesSettings.actions'
 
 import styles from './RulesSettings.module.scss'
